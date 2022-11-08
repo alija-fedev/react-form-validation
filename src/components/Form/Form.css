@@ -1,0 +1,29 @@
+.radio-input {
+    display: flex;
+    margin-left: 32%;
+}
+
+.radio-label {
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.select-input {
+    display: flex;
+    margin-left: 32%;
+}
+
+.error-p {
+    color: red;
+    margin-left: -26%;
+    margin-top: 1px;
+}
+
+.textarea-label {
+    margin-left: -24.5%;
+    font-weight: 600;
+}
+
+.textarea-input {
+    margin-left: -1%;
+}
