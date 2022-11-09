@@ -1,3 +1,7 @@
 .gender-input {
     width: 100%;
 }
+
+.radio-button {
+    cursor: pointer;
+}

@@ -1,11 +1,13 @@
-import "../Button/Button.css"
+import "../Button/Button.css";
 
-const Button = () => {
-    return(
-        <div>
-            <button className="submit-button" type="submit">Submit</button>
-        </div>
-    )
-}
+const Button = ({ editformarray }) => {
+  return (
+    <div>
+      <button className="submit-button" type="submit">
+        {editformarray}
+      </button>
+    </div>
+  );
+};
 
 export default Button;
