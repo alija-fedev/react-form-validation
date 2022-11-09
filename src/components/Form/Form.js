@@ -54,7 +54,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
+    if (Object.keys(formErrors).length > 0 && !editformarray && formValues.length < 1) {
       setFormErrors(formErrors);
     }
     //  setFormErrors(validate(formValues))
@@ -69,6 +69,7 @@ const Form = () => {
       description.length === 0
     ) {
       alert("Please fill up the details");
+      setFormErrors(formErrors)
     }
   
     if (!editformarray) {
@@ -82,7 +83,7 @@ const Form = () => {
           gender,
           country,
           dob,
-          description,
+          description
         },
       ]);
       setFormValues({
@@ -92,7 +93,7 @@ const Form = () => {
         gender: "",
         country: "",
         dob: "",
-        description: "",
+        description: ""
       });
     } else {
       updateUser(formValues, editformarray.id);
@@ -109,8 +110,9 @@ const Form = () => {
 
   //Save data at local storage
   useEffect(() => {
-    localStorage.setItem("values", JSON.stringify(formarray));
-  }, [formarray]);
+    if(Object.keys(formValues).length) {
+      localStorage.setItem("values", JSON.stringify(formarray));
+    }}, [formarray]);
 
 
   //Validation form
@@ -150,8 +152,12 @@ const Form = () => {
     if (!description || description === "") {
       errors.description = "description is required";
     }
+    console.log("errors", errors)
+
     return errors;
   };
+
+
 
   return (
     <div>
@@ -236,6 +242,7 @@ const Form = () => {
             name="description"
             onChange={(e) => setField("description", e.target.value)}
             isInvalid={!!formErrors.description}
+            onValue={formValues.description}
           />
           <p className="error-p">{formErrors.description}</p>
           <Button editformarray={editformarray ? "Update" : "Add"} />
